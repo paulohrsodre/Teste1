@@ -1,26 +1,10 @@
-import React, { Component } from 'react';
-import Mensagem from './Components/Mensagem';
+const express = require('express');
+const app = exress();
 
-class App extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      message: 'Digite seu nome... ',
-    }
-  }
+app.use((req, res, next) => {
+  res.status(200).send ({
+    mensagem: 'Its Ok!'
+  });
+});
 
-  handlerChange = (e) => {
-    let message = (e.target.value === '') ? 'Digite seu nome... ' : 'olá,' + e.target.value;
-    this.setSate({...this.state, message: message});
-  }
-
-    render() {
-        return(
-          <div>
-          <input type="text" onChange={this.handlreChange}/>
-          <Mensagem message={this.state.message}/>
-        </div>
-        )
-    }
-}
-export default App;
+module.exports = app;
